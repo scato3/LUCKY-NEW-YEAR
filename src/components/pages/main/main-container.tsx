@@ -1,0 +1,109 @@
+'use client';
+
+import { useState } from 'react';
+import styles from './main.module.scss';
+import Image from 'next/image';
+import { IconLongCloud, IconSun, IconEdgi } from '../../../../public/icons';
+import { FullTteokguk } from '../../../../public/tteokguk';
+import { useRouter } from 'next/navigation';
+
+interface MainContainerProps {
+  type: 'main' | 'make' | 'friend';
+}
+
+export default function MainContainer({ type }: MainContainerProps) {
+  const router = useRouter();
+  const [name, setName] = useState('');
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.innerContainer}>
+        <Image
+          src={IconLongCloud}
+          alt="구름 아이콘"
+          className={styles.cloudIcon}
+        />
+        <Image src={IconSun} alt="태양 아이콘" className={styles.sunIcon} />
+        <Image
+          src={IconLongCloud}
+          alt="구름 아이콘"
+          className={styles.cloudSecondIcon}
+        />
+        <div className={styles.titleContainer}>
+          {type === 'main' && (
+            <div className={styles.edgeContainer}>
+              <Image
+                src={IconEdgi}
+                alt="모서리 장식"
+                className={styles.edgeImage}
+              />
+            </div>
+          )}
+          <div className={styles.titleTextContainer}>
+            <p className={`${styles.title} heir-font`}>떡국</p>
+            <p className={`${styles.subTitle} heir-font`}>우정테스트</p>
+            {type === 'main' ? (
+              <div className={styles.listContainer}>
+                <div className={styles.listItem}>
+                  <span className={styles.number}>1</span>
+                  친구들과 함께 떡국 만들고
+                </div>
+                <div className={styles.listItem}>
+                  <span className={styles.number}>2</span>내 우정 순위
+                  확인해보자!
+                </div>
+              </div>
+            ) : (
+              <>
+                <p className={`${styles.nameTitle} heir-font`}>
+                  {type === 'make' ? '내 이름은?' : '친구에게 보일 내 이름'}
+                </p>
+                <input
+                  type="text"
+                  className={styles.nameInput}
+                  placeholder="홍길동"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </>
+            )}
+          </div>
+        </div>
+
+        {type === 'main' && (
+          <Image
+            src={FullTteokguk}
+            alt="떡국 이미지"
+            className={styles.tteokgukImage}
+            width={240}
+            height={180}
+          />
+        )}
+        <div className={styles.topBackground} />
+        <div className={styles.bottomBackground} />
+        <div className={styles.buttonContainer}>
+          {type === 'main' ? (
+            <>
+              <button
+                className={styles.myTteokgukButton}
+                onClick={() => router.push('./my-tteokguk-make')}
+              >
+                내 떡국 만들기
+              </button>
+              <button
+                className={styles.friendTteokgukButton}
+                onClick={() => router.push('./friend-tteokguk-make')}
+              >
+                친구 떡국 만들기
+              </button>
+            </>
+          ) : (
+            <button className={styles.startButton} disabled={!name}>
+              시작하기
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
