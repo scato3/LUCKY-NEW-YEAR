@@ -75,8 +75,8 @@ export default function MainContainer({ type }: MainContainerProps) {
             src={FullTteokguk}
             alt="떡국 이미지"
             className={styles.tteokgukImage}
-            width={240}
-            height={180}
+            width={160}
+            height={150}
           />
         )}
         <div className={styles.topBackground} />
