@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import styles from './main.module.scss';
 import Image from 'next/image';
-import { IconLongCloud, IconSun, IconEdgi } from '../../../../public/icons';
+import { IconLongCloud, IconSun, IconEdge } from '../../../../public/icons';
 import { FullTteokguk } from '../../../../public/tteokguk';
 import { useRouter } from 'next/navigation';
 
@@ -14,6 +14,13 @@ interface MainContainerProps {
 export default function MainContainer({ type }: MainContainerProps) {
   const router = useRouter();
   const [name, setName] = useState('');
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value.length <= 6) {
+      setName(value);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -33,7 +40,7 @@ export default function MainContainer({ type }: MainContainerProps) {
           {type === 'main' && (
             <div className={styles.edgeContainer}>
               <Image
-                src={IconEdgi}
+                src={IconEdge}
                 alt="모서리 장식"
                 className={styles.edgeImage}
               />
@@ -63,7 +70,8 @@ export default function MainContainer({ type }: MainContainerProps) {
                   className={styles.nameInput}
                   placeholder="홍길동"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={handleNameChange}
+                  maxLength={6}
                 />
               </>
             )}
@@ -77,6 +85,8 @@ export default function MainContainer({ type }: MainContainerProps) {
             className={styles.tteokgukImage}
             width={160}
             height={150}
+            quality={100}
+            priority
           />
         )}
         <div className={styles.topBackground} />
@@ -98,7 +108,13 @@ export default function MainContainer({ type }: MainContainerProps) {
               </button>
             </>
           ) : (
-            <button className={styles.startButton} disabled={!name}>
+            <button
+              className={styles.startButton}
+              disabled={!name}
+              onClick={() => {
+                router.push('./my-tteokguk');
+              }}
+            >
               시작하기
             </button>
           )}
