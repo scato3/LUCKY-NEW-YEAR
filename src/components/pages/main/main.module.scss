@@ -3,7 +3,6 @@
   min-height: 100dvh;
   position: relative;
   overflow: hidden;
-  box-sizing: border-box;
   padding: 11px 14px;
 }
 
@@ -119,7 +118,6 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-  object-fit: contain;
 }
 
 .topBackground {
@@ -218,6 +216,10 @@
 
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
+  }
+
+  &::-webkit-input-placeholder {
+    font-size: 16px;
   }
 }
 
