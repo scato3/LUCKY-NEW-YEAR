@@ -4,10 +4,8 @@ import styles from './boiling-tteokguk.module.scss';
 import { SotBottom, SotTop, RightCloud } from '../../../../public/sot';
 import Image from 'next/image';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 export default function BoilingTteokguk() {
-  const router = useRouter();
   const [message, setMessage] = useState('');
 
   const handleSend = () => {
@@ -69,9 +67,9 @@ export default function BoilingTteokguk() {
         <button
           className={styles.sendButton}
           onClick={handleSend}
-          disabled={!message.trim() || isPending}
+          disabled={!message.trim()}
         >
-          {isPending ? '전송 중...' : '보내기'}
+          보내기
         </button>
       </div>
     </div>
