@@ -2,7 +2,7 @@
 
 import styles from './ranking.module.scss';
 import { OptimizedImage } from '@/components/common/OptimizedImage';
-import { IconLongCloud, IconSun } from '../../../../public/icons';
+import { IconLongCloud, IconSun, IconFlag } from '../../../../public/icons';
 
 export default function RankingContainer() {
   const hasRankingData = true;
@@ -34,8 +34,13 @@ export default function RankingContainer() {
           </div>
           <div className={styles.rankingContainer}>
             <div className={styles.rankingList}>
+              <OptimizedImage
+                src={IconFlag}
+                alt="깃발 아이콘"
+                className={styles.flagIcon}
+              />
               <div className={styles.rankingTitle}>
-                <p>{'< 궁합 랭킹 >'}</p>
+                <p>{'< 랭킹 보드 >'}</p>
               </div>
               {Array.from({ length: 6 }).map((_, index) => (
                 <div key={index} className={styles.rankingItem}>
