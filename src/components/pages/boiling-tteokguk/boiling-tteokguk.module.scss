@@ -21,11 +21,12 @@
 
 .sotContainer {
   position: absolute;
-  top: 50%;
+  top: 43%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
   height: 200px;
+  z-index: 2;
 }
 
 .sotBottom {
@@ -33,7 +34,7 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1;
+  z-index: 2;
 }
 
 .sotTop {
@@ -60,16 +61,16 @@
   position: absolute;
   top: 35%;
   left: 0;
-  z-index: 1;
+  z-index: 5;
   animation: cloudLeft 3s ease-in-out infinite;
   opacity: 0.8;
 }
 
 .rightCloud {
   position: absolute;
-  top: 50%;
+  top: 45%;
   right: 0;
-  z-index: 1;
+  z-index: 5;
   animation: cloudRight 4s ease-in-out infinite;
   opacity: 0.8;
 }
@@ -95,5 +96,84 @@
   50% {
     transform: translateX(-10px) scale(1.1);
     opacity: 1;
+  }
+}
+
+.bottomSheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45%;
+  background-color: #8b4513;
+  border-radius: 20px 20px 0 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tableBackground {
+  position: absolute;
+  top: 45%;
+  left: -150%;
+  width: 400%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: #766551;
+}
+
+.inputWrapper {
+  position: absolute;
+  bottom: 60px;
+  width: calc(100% - 32px);
+  max-width: 393px;
+  height: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 3;
+}
+
+.messageInput {
+  height: 150px;
+  overflow-y: auto;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 16px;
+  padding: 16px;
+  text-align: left;
+  resize: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background-image: url('../../../../public/icons/input_box.svg');
+  background-size: contain;
+  background-repeat: repeat;
+
+  &::placeholder {
+    color: #999999;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.sendButton {
+  width: 100%;
+  height: 140px;
+  background-color: #25d366;
+  border: none;
+  border-radius: 8px;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import styles from './make-tteokguk.module.scss';
-import Image, { ImageProps } from 'next/image';
 import { IconLongCloud } from '../../../../public/icons';
 import { YUKSU, MAIN, SUB, GARNISH } from '@/constants/ingredients';
 import IngredientSelector from '@/components/ingredient-selector/ingredient-selector';
@@ -16,6 +15,7 @@ import {
 } from '@/constants/item-images';
 import { IconLeftEdge, IconRightEdge } from '../../../../public/icons';
 import { useRouter } from 'next/navigation';
+import { OptimizedImage } from '@/components/common/OptimizedImage';
 
 type TabType = 'yuksu' | 'main' | 'sub' | 'garnish';
 
@@ -25,15 +25,6 @@ const TABS: { id: TabType; label: string }[] = [
   { id: 'sub', label: '부재료' },
   { id: 'garnish', label: '고명' },
 ];
-const OptimizedImage = ({ className, ...props }: ImageProps) => (
-  <Image
-    {...props}
-    className={className}
-    quality={75}
-    priority
-    loading="eager"
-  />
-);
 
 export default function MakeTteokguk() {
   const router = useRouter();
@@ -121,14 +112,22 @@ export default function MakeTteokguk() {
     return hasYuksu && hasMain && hasSub;
   };
 
+  const handleComplete = () => {
+    const params = new URLSearchParams({
+      yuksu: getSelectedIds('yuksu')[0],
+      main: getSelectedIds('main').join(','),
+      sub: getSelectedIds('sub').join(','),
+      garnish: getSelectedIds('garnish').join(','),
+    });
+    router.push(`/finish-tteokguk?${params.toString()}`);
+  };
+
   return (
     <div className={styles.container} onClick={() => setShowGuide(false)}>
       <button
-        className={`${styles.completeButton} ${!isCompleteEnabled() ? styles.disabled : ''}`}
+        className={styles.completeButton}
         disabled={!isCompleteEnabled()}
-        onClick={() => {
-          router.push('/boiling-tteokguk');
-        }}
+        onClick={handleComplete}
       >
         완성
       </button>

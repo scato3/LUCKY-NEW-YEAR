@@ -170,8 +170,7 @@
   z-index: 2;
 }
 
-.myTteokgukButton,
-.friendTteokgukButton {
+.TteokgukButton {
   flex: 1;
   height: 70px;
   border: none;
@@ -180,14 +179,6 @@
   line-height: 30px;
   cursor: pointer;
   width: auto;
-}
-
-.myTteokgukButton {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-.friendTteokgukButton {
   background-color: #25d366;
   color: #000000;
 }
