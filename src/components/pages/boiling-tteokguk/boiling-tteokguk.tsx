@@ -1,25 +1,44 @@
+'use client';
+
 import styles from './boiling-tteokguk.module.scss';
-import {
-  SotBottom,
-  SotTop,
-  RightCloud,
-  LeftCloud,
-} from '../../../../public/sot';
+import { SotBottom, SotTop, RightCloud } from '../../../../public/sot';
 import Image from 'next/image';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function BoilingTteokguk() {
+  const router = useRouter();
+  const [message, setMessage] = useState('');
+
+  const handleSend = () => {
+    // if (message.trim()) {
+    //   sendMessage(message, {
+    //     onSuccess: () => {
+    //       router.push('/friend-tteokguk-make');
+    //     },
+    //     onError: (error) => {
+    //       console.error('Failed to send message:', error);
+    //     },
+    //   });
+    // }
+  };
+
   return (
     <div className={styles.container}>
       <Image
-        src={LeftCloud}
+        src={RightCloud}
         alt="왼쪽 구름"
         className={styles.leftCloud}
+        width={120}
+        height={110}
         priority
       />
       <Image
         src={RightCloud}
         alt="오른쪽 구름"
         className={styles.rightCloud}
+        width={160}
+        height={130}
         priority
       />
       <div className={styles.textContainer}>
@@ -39,6 +58,21 @@ export default function BoilingTteokguk() {
           className={styles.sotTop}
           priority
         />
+      </div>
+      <div className={styles.tableBackground}></div>
+      <div className={styles.inputWrapper}>
+        <textarea
+          className={styles.messageInput}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <button
+          className={styles.sendButton}
+          onClick={handleSend}
+          disabled={!message.trim() || isPending}
+        >
+          {isPending ? '전송 중...' : '보내기'}
+        </button>
       </div>
     </div>
   );

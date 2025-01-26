@@ -37,7 +37,7 @@ export default function MainContainer({ type }: MainContainerProps) {
           className={styles.cloudSecondIcon}
         />
         <div className={styles.titleContainer}>
-          {type === 'main' && (
+          {(type === 'main' || type === 'friend') && (
             <div className={styles.edgeContainer}>
               <Image
                 src={IconEdge}
@@ -53,11 +53,29 @@ export default function MainContainer({ type }: MainContainerProps) {
               <div className={styles.listContainer}>
                 <div className={styles.listItem}>
                   <span className={styles.number}>1</span>
-                  친구들과 함께 떡국 만들고
+                  나만의 떡국을 만들어서
                 </div>
                 <div className={styles.listItem}>
-                  <span className={styles.number}>2</span>내 우정 순위
-                  확인해보자!
+                  <span className={styles.number}>2</span>친구에게 공유하고
+                </div>
+                <div className={styles.listItem}>
+                  <span className={styles.number}>3</span>궁합점수 랭킹을
+                  확인해요
+                </div>
+              </div>
+            ) : type === 'friend' ? (
+              <div className={styles.listContainer}>
+                <div className={styles.listItem}>
+                  <span className={styles.number}>1</span>
+                  친구의 떡국에 내 레시피를 더해서
+                </div>
+                <div className={styles.listItem}>
+                  <span className={styles.number}>2</span>
+                  둘만의 떡국을 완성하고
+                </div>
+                <div className={styles.listItem}>
+                  <span className={styles.number}>3</span>
+                  우정 궁합을 확인하세요!
                 </div>
               </div>
             ) : (
@@ -92,19 +110,13 @@ export default function MainContainer({ type }: MainContainerProps) {
         <div className={styles.topBackground} />
         <div className={styles.bottomBackground} />
         <div className={styles.buttonContainer}>
-          {type === 'main' ? (
+          {type === 'main' || type === 'friend' ? (
             <>
               <button
-                className={styles.myTteokgukButton}
+                className={styles.TteokgukButton}
                 onClick={() => router.push('./my-tteokguk-make')}
               >
-                내 떡국 만들기
-              </button>
-              <button
-                className={styles.friendTteokgukButton}
-                onClick={() => router.push('./friend-tteokguk-make')}
-              >
-                친구 떡국 만들기
+                시작하기
               </button>
             </>
           ) : (
@@ -115,7 +127,7 @@ export default function MainContainer({ type }: MainContainerProps) {
                 router.push('./my-tteokguk');
               }}
             >
-              시작하기
+              다음
             </button>
           )}
         </div>

@@ -4,3 +4,5 @@ export { default as IconEdge } from './icon_edge.svg';
 export { default as IconRenew } from './icon_renew.svg';
 export { default as IconLeftEdge } from './icon_left-edge.svg';
 export { default as IconRightEdge } from './icon_right-edge.svg';
+export { default as InputBox } from './input_box.svg';
+export { default as IconYungi } from './icon_yungi.svg';
