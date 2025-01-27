@@ -4,7 +4,7 @@ import { TestData, PutData } from '../types/recipe';
 
 async function postRecipeTest(data: TestData): Promise<RecipeResponse> {
   return await api.post<RecipeResponse>({
-    url: '/recipe/test',
+    url: 'recipe/test',
     body: data,
   });
 }
@@ -22,7 +22,7 @@ export const usePostRecipeTest = () => {
 
 async function putRecipeTest(data: PutData) {
   return await api.put({
-    url: '/recipe/test',
+    url: 'recipe/test',
     body: data,
   });
 }
