@@ -131,6 +131,14 @@ export default function MainContainer({ type, uuid }: MainContainerProps) {
         <div className={`${styles.buttonContainer} ${styles.keyboardSafe}`}>
           {type === 'main' || type === 'friend' ? (
             <>
+              {type === 'friend' && uuid && (
+                <button
+                  className={styles.rankingButton}
+                  onClick={() => router.push(`/v/${uuid}/ranking`)}
+                >
+                  랭킹보기
+                </button>
+              )}
               <button
                 className={styles.TteokgukButton}
                 onClick={() => {
