@@ -8,10 +8,11 @@ import { FullTteokguk } from '../../../../public/tteokguk';
 import { useRouter } from 'next/navigation';
 
 interface MainContainerProps {
-  type: 'main' | 'make' | 'friend';
+  type: 'main' | 'make' | 'friend' | 'friend-make';
+  uuid?: string;
 }
 
-export default function MainContainer({ type }: MainContainerProps) {
+export default function MainContainer({ type, uuid }: MainContainerProps) {
   const router = useRouter();
   const [name, setName] = useState('');
 
@@ -114,7 +115,13 @@ export default function MainContainer({ type }: MainContainerProps) {
             <>
               <button
                 className={styles.TteokgukButton}
-                onClick={() => router.push('./my-tteokguk-make')}
+                onClick={() => {
+                  if (type === 'friend' && uuid) {
+                    router.push(`/v/${uuid}/friend-tteokguk`);
+                  } else {
+                    router.push('./my-tteokguk');
+                  }
+                }}
               >
                 시작하기
               </button>
@@ -124,7 +131,16 @@ export default function MainContainer({ type }: MainContainerProps) {
               className={styles.startButton}
               disabled={!name}
               onClick={() => {
-                router.push('./my-tteokguk');
+                const params = new URLSearchParams({
+                  name: name,
+                });
+                if (type === 'friend-make' && uuid) {
+                  router.push(
+                    `/v/${uuid}/friend-tteokguk-make?${params.toString()}`
+                  );
+                } else {
+                  router.push(`/my-tteokguk-make?${params.toString()}`);
+                }
               }}
             >
               다음

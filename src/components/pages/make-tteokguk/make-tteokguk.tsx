@@ -14,8 +14,10 @@ import {
   GARNISH_ITEM_IMAGES,
 } from '@/constants/item-images';
 import { IconLeftEdge, IconRightEdge } from '../../../../public/icons';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { OptimizedImage } from '@/components/common/OptimizedImage';
+import { useRecipe } from '@/hooks/useRecipe';
+import { usePostRecipeTest } from '@/api/query/recipe';
 
 type TabType = 'yuksu' | 'main' | 'sub' | 'garnish';
 
@@ -26,8 +28,14 @@ const TABS: { id: TabType; label: string }[] = [
   { id: 'garnish', label: '고명' },
 ];
 
-export default function MakeTteokguk() {
+interface MakeTteokgukProps {
+  uuid?: string;
+}
+
+export default function MakeTteokguk({ uuid }: MakeTteokgukProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const name = searchParams.get('name') || '';
   const {
     selectedTab,
     setSelectedTab,
@@ -37,6 +45,9 @@ export default function MakeTteokguk() {
   } = useIngredientSelection();
   const [showGuide, setShowGuide] = useState(true);
   const tteokgukImage = useTteokgukImage(getSelectedIds('yuksu')[0]);
+  const { setRecipe } = useRecipe();
+
+  const { mutate } = usePostRecipeTest();
 
   const getIngredients = (tab: TabType) => {
     switch (tab) {
@@ -113,13 +124,29 @@ export default function MakeTteokguk() {
   };
 
   const handleComplete = () => {
-    const params = new URLSearchParams({
-      yuksu: getSelectedIds('yuksu')[0],
-      main: getSelectedIds('main').join(','),
-      sub: getSelectedIds('sub').join(','),
-      garnish: getSelectedIds('garnish').join(','),
+    const recipe = {
+      yuksu: getSelectedIds('yuksu'),
+      main: getSelectedIds('main'),
+      sub: getSelectedIds('sub'),
+      garnish: getSelectedIds('garnish'),
+      nickname: name,
+    };
+
+    setRecipe(recipe);
+    mutate(recipe, {
+      onSuccess: (response) => {
+        if (uuid) {
+          router.push(`/v/${uuid}/boiling`);
+        } else {
+          router.push(`/finish-tteokguk?uuid=${response.userUUID}`);
+          console.log(response.userUUID);
+        }
+      },
+      onError: (error) => {
+        console.error('Error:', error);
+        alert('실패했습니다');
+      },
     });
-    router.push(`/finish-tteokguk?${params.toString()}`);
   };
 
   return (
