@@ -9,7 +9,7 @@ export const OptimizedImage = ({
     {...props}
     className={className}
     alt={alt}
-    quality={75}
+    quality={100}
     priority
     loading="eager"
   />
