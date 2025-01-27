@@ -139,7 +139,6 @@ export default function MakeTteokguk({ uuid }: MakeTteokgukProps) {
           router.push(`/v/${uuid}/boiling?name=${name}`);
         } else {
           router.push(`/finish-tteokguk?uuid=${response.userUUID}`);
-          console.log(response.userUUID);
         }
       },
       onError: (error) => {

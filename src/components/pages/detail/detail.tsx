@@ -25,9 +25,7 @@ export default function DetailClient({ ownerUUID }: DetailClientProps) {
     findUUID: findUUID || '',
   });
 
-  const tteokgukImage = useTteokgukImage(
-    (data?.yuksu?.[0] || '').toLowerCase()
-  );
+  const tteokgukImage = useTteokgukImage((data?.yuksu[0] || '').toLowerCase());
 
   if (!findUUID || isLoading || !data) return null;
 
