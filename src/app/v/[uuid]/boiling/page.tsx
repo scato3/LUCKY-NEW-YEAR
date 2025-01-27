@@ -1,9 +1,10 @@
 import BoilingTteokguk from '@/components/pages/boiling-tteokguk/boiling-tteokguk';
 
-type Props = {
-  params: { uuid: string };
-};
+interface PageProps {
+  params: Promise<{ uuid: string }>;
+}
 
-export default function Page(props: Props) {
-  return <BoilingTteokguk uuid={props.params.uuid} />;
+export default async function Page({ params }: PageProps) {
+  const { uuid } = await params;
+  return <BoilingTteokguk uuid={uuid} />;
 }

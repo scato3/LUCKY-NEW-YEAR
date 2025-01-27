@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useRecipeStore } from '@/store/recipe';
 
 interface Props {
-  uuid: string;
+  uuid?: string;
 }
 
 export default function BoilingTteokguk({ uuid }: Props) {
