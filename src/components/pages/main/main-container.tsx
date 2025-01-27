@@ -23,6 +23,23 @@ export default function MainContainer({ type, uuid }: MainContainerProps) {
     }
   };
 
+  const handleSubmit = () => {
+    if (!name) return;
+
+    const params = new URLSearchParams({ name });
+    if (type === 'friend-make' && uuid) {
+      router.push(`/v/${uuid}/friend-tteokguk-make?${params.toString()}`);
+    } else {
+      router.push(`/my-tteokguk-make?${params.toString()}`);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSubmit();
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.innerContainer}>
@@ -91,6 +108,7 @@ export default function MainContainer({ type, uuid }: MainContainerProps) {
                   value={name}
                   onChange={handleNameChange}
                   maxLength={6}
+                  onKeyPress={handleKeyPress}
                 />
               </>
             )}
@@ -110,7 +128,7 @@ export default function MainContainer({ type, uuid }: MainContainerProps) {
         )}
         <div className={styles.topBackground} />
         <div className={styles.bottomBackground} />
-        <div className={styles.buttonContainer}>
+        <div className={`${styles.buttonContainer} ${styles.keyboardSafe}`}>
           {type === 'main' || type === 'friend' ? (
             <>
               <button
@@ -130,18 +148,7 @@ export default function MainContainer({ type, uuid }: MainContainerProps) {
             <button
               className={styles.startButton}
               disabled={!name}
-              onClick={() => {
-                const params = new URLSearchParams({
-                  name: name,
-                });
-                if (type === 'friend-make' && uuid) {
-                  router.push(
-                    `/v/${uuid}/friend-tteokguk-make?${params.toString()}`
-                  );
-                } else {
-                  router.push(`/my-tteokguk-make?${params.toString()}`);
-                }
-              }}
+              onClick={handleSubmit}
             >
               다음
             </button>

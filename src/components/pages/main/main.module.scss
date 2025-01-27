@@ -168,6 +168,13 @@
   gap: 9px;
   box-sizing: border-box;
   z-index: 2;
+
+  &.keyboardSafe {
+    @supports (padding: max(0px)) {
+      padding-bottom: max(30px, env(safe-area-inset-bottom));
+      bottom: 0;
+    }
+  }
 }
 
 .TteokgukButton {
