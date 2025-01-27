@@ -182,7 +182,8 @@
   }
 }
 
-.TteokgukButton {
+.TteokgukButton,
+.rankingButton {
   flex: 1;
   height: 70px;
   border: none;
@@ -192,6 +193,11 @@
   cursor: pointer;
   width: auto;
   background-color: #25d366;
+  color: #000000;
+}
+
+.rankingButton {
+  background-color: #ffffff;
   color: #000000;
 }
 
