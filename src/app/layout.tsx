@@ -13,7 +13,7 @@ export const metadata: Metadata = {
       {
         url: '/tteokguk/thumbnail.png',
         width: 1200,
-        height: 630,
+        height: 900,
         alt: '떡국 우정테스트 썸네일',
       },
     ],
