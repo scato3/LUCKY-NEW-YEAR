@@ -253,3 +253,26 @@
   top: 0;
   z-index: 10;
 }
+
+.messageInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 80px);
+  height: 65px;
+  border-radius: 15px;
+  background-image: url('../../../../public/icons/result_box.svg');
+  background-size: 100%;
+  z-index: 50;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 12px 20px;
+  word-break: break-all;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}

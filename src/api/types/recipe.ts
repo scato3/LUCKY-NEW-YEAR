@@ -71,5 +71,5 @@ export interface GetExistParameterProps {
 }
 
 export interface GetExistResponse {
-  isExists: boolean;
+  exists: boolean;
 }

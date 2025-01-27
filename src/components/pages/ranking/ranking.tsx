@@ -6,6 +6,7 @@ import { IconLongCloud, IconSun, IconFlag } from '../../../../public/icons';
 import { useGetRanking } from '@/api/query/recipe';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { shareLink } from '@/utils/share';
 
 export default function RankingContainer({ uuid }: { uuid: string }) {
   const router = useRouter();
@@ -20,6 +21,8 @@ export default function RankingContainer({ uuid }: { uuid: string }) {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+
+  console.log(data);
 
   return (
     <div className={styles.container}>
@@ -38,7 +41,7 @@ export default function RankingContainer({ uuid }: { uuid: string }) {
         alt="구름 아이콘"
         className={styles.cloudSecondIcon}
       />
-      {data ? (
+      {data?.totalPages !== 0 ? (
         <>
           <div className={styles.titleContainer}>
             <p className={styles.title}>별명을 눌러서</p>
@@ -56,7 +59,7 @@ export default function RankingContainer({ uuid }: { uuid: string }) {
               <div className={styles.rankingTitle}>
                 <p>{'< 랭킹 보드 >'}</p>
               </div>
-              {data.rankList?.map((item, index) => (
+              {data?.rankList?.map((item, index) => (
                 <div
                   key={index}
                   className={styles.rankingItem}
@@ -93,7 +96,15 @@ export default function RankingContainer({ uuid }: { uuid: string }) {
         </div>
       )}
       <div className={styles.buttonContainer}>
-        <button className={styles.button}>링크 보내기</button>
+        <button
+          className={styles.button}
+          onClick={() => {
+            const shareUrl = `${window.location.origin}/v/${uuid}`;
+            shareLink({ url: shareUrl });
+          }}
+        >
+          링크 보내기
+        </button>
       </div>
     </div>
   );

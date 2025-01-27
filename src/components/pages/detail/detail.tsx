@@ -26,6 +26,8 @@ export default function DetailClient({ ownerUUID, findUUID }: Props) {
     (data?.yuksu?.[0] || '').toLowerCase()
   );
 
+  console.log(data);
+
   if (isLoading || !data) return null;
 
   const renderSelectedItems = () => {
@@ -119,6 +121,7 @@ export default function DetailClient({ ownerUUID, findUUID }: Props) {
       </div>
       <div className={styles.topBackground} />
       <div className={styles.bottomBackground} />
+      <div className={styles.messageInput}>{data?.message}</div>
     </div>
   );
 }
