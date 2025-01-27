@@ -15,6 +15,7 @@ export default function BoilingTteokguk({ uuid }: Props) {
   const { yuksu, main, sub, garnish } = useRecipeStore();
 
   console.log(yuksu, main, sub, garnish);
+  console.log(uuid);
 
   const handleSend = () => {
     // if (message.trim()) {
