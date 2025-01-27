@@ -11,7 +11,8 @@ export default async function Layout({ children, params }: LayoutProps) {
 
   try {
     const data = await getExist({ ownerUUID: uuid });
-    if (!data.isExists) {
+    console.log(data);
+    if (data.exists === false) {
       redirect('/');
     }
   } catch (error) {
