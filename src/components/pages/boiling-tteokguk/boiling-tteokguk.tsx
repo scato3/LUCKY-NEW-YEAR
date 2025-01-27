@@ -5,6 +5,9 @@ import { SotBottom, SotTop, RightCloud } from '../../../../public/sot';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useRecipeStore } from '@/store/recipe';
+import { usePutRecipeTest } from '@/api/query/recipe';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { useResultStore } from '@/store/result';
 
 interface Props {
   uuid?: string;
@@ -13,21 +16,37 @@ interface Props {
 export default function BoilingTteokguk({ uuid }: Props) {
   const [message, setMessage] = useState('');
   const { yuksu, main, sub, garnish } = useRecipeStore();
+  const searchParams = useSearchParams();
+  const name = searchParams.get('name') || '';
+  const { mutate } = usePutRecipeTest();
+  const { setResult } = useResultStore();
+  const router = useRouter();
 
   console.log(yuksu, main, sub, garnish);
   console.log(uuid);
 
   const handleSend = () => {
-    // if (message.trim()) {
-    //   sendMessage(message, {
-    //     onSuccess: () => {
-    //       router.push('/friend-tteokguk-make');
-    //     },
-    //     onError: (error) => {
-    //       console.error('Failed to send message:', error);
-    //     },
-    //   });
-    // }
+    if (!uuid) return;
+
+    mutate(
+      {
+        data: {
+          yuksu,
+          main,
+          sub,
+          garnish,
+          message,
+          nickname: name,
+        },
+        ownerUUID: uuid,
+      },
+      {
+        onSuccess: (response) => {
+          setResult(response);
+          router.push(`/v/${uuid}/finish`);
+        },
+      }
+    );
   };
 
   return (
@@ -72,6 +91,7 @@ export default function BoilingTteokguk({ uuid }: Props) {
           className={styles.messageInput}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          maxLength={60}
         />
         <button
           className={styles.sendButton}

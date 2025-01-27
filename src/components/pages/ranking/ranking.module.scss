@@ -83,9 +83,9 @@
 }
 
 .rankingItem {
-  display: flex;
-  justify-content: space-around;
-  padding: 5px;
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  padding: 5px 40px;
   position: relative;
   cursor: pointer;
 
@@ -98,6 +98,14 @@
     width: 80%;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .name {
+    text-align: left;
+  }
+
+  .score {
+    text-align: right;
   }
 
   .name,
@@ -124,7 +132,7 @@
 
 .buttonContainer {
   position: fixed;
-  bottom: 20px;
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -137,7 +145,7 @@
 
 .button {
   width: calc(100% - 60px);
-  height: 71px;
+  height: 65px;
   background: #25d366;
   border: none;
   border-radius: 5px;
@@ -175,4 +183,24 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 4;
+}
+
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+  z-index: 4;
+}
+
+.pageIndicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #cfcfcf;
+  cursor: pointer;
+
+  &.active {
+    background-color: #25d366;
+  }
 }

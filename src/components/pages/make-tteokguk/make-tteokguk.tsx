@@ -136,7 +136,7 @@ export default function MakeTteokguk({ uuid }: MakeTteokgukProps) {
     mutate(recipe, {
       onSuccess: (response) => {
         if (uuid) {
-          router.push(`/v/${uuid}/boiling`);
+          router.push(`/v/${uuid}/boiling?name=${name}`);
         } else {
           router.push(`/finish-tteokguk?uuid=${response.userUUID}`);
           console.log(response.userUUID);
