@@ -8,18 +8,11 @@
   margin: 0 auto;
 }
 
-.leftEdge {
+.bottomEdge {
   position: absolute;
   left: 0;
   top: 45%;
-  transform: translateY(-50%);
-  z-index: 1;
-}
-
-.rightEdge {
-  position: absolute;
-  right: 0;
-  top: 45%;
+  width: 100%;
   transform: translateY(-50%);
   z-index: 1;
 }

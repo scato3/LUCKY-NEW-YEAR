@@ -54,18 +54,40 @@
   margin-top: 100px;
 }
 
+.edgeContainer {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.edgeImage {
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 0;
+}
+
 .titleTextContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 1;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 60px;
 }
 
 .title,
 .subTitle {
   font-weight: 700;
-  font-size: 50px;
+  font-size: 40px;
   line-height: 1;
 }
 
@@ -85,9 +107,9 @@
 }
 
 .listContainer {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
   width: fit-content;
 }
 
@@ -95,7 +117,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 30px;
   color: #000000;
@@ -106,10 +128,10 @@
   align-items: center;
   justify-content: center;
   min-width: 24px;
-  height: 24px;
+  height: 20px;
   background-color: #ffffff;
   border-radius: 50%;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .tteokgukImage {
@@ -140,20 +162,6 @@
   background-color: #766551;
   border-radius: 50% 50% 0 0 / 30% 30% 0 0;
   z-index: 1;
-}
-
-.edgeContainer {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-}
-
-.edgeImage {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 }
 
 .buttonContainer {
@@ -206,7 +214,7 @@
   line-height: 55px;
   font-size: 24px;
   color: #000000;
-  margin-top: -10px;
+  margin-top: 100px;
 }
 
 .nameInput {
