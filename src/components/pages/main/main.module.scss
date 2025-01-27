@@ -4,10 +4,6 @@
   position: relative;
   overflow: hidden;
   padding: 11px 14px;
-
-  &:focus-within {
-    padding-bottom: 200px;
-  }
 }
 
 .innerContainer {
@@ -220,8 +216,6 @@
   outline: none;
   font-family: var(--font-wanju);
   padding: 8px 0;
-  position: relative;
-  z-index: 10;
 
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
@@ -232,10 +226,8 @@
   }
 
   &:focus {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #f0e1da;
+    position: relative;
+    z-index: 10;
   }
 }
 
