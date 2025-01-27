@@ -275,4 +275,14 @@
   word-break: break-all;
   overflow-y: auto;
   white-space: pre-wrap;
+
+  &:focus {
+    position: relative;
+    z-index: 10;
+  }
+
+  @media screen and (max-height: 500px) {
+    position: relative;
+    bottom: 20px;
+  }
 }
