@@ -115,7 +115,7 @@ export default function MainContainer({ type, uuid }: MainContainerProps) {
           </div>
         </div>
 
-        {type === 'main' && (
+        {(type === 'main' || type === 'friend') && (
           <Image
             src={FullTteokguk}
             alt="떡국 이미지"

@@ -254,6 +254,16 @@
   z-index: 10;
 }
 
+.messageInputWrapper {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 80px);
+  height: 65px;
+  z-index: 50;
+}
+
 .messageInput {
   display: flex;
   justify-content: center;
@@ -265,8 +275,6 @@
   width: calc(100% - 80px);
   height: 65px;
   border-radius: 15px;
-  background-image: url('../../../../public/icons/result_box.svg');
-  background-size: 100%;
   z-index: 50;
   font-size: 14px;
   font-weight: 400;
@@ -275,14 +283,20 @@
   word-break: break-all;
   overflow-y: auto;
   white-space: pre-wrap;
-
-  &:focus {
-    position: relative;
-    z-index: 10;
-  }
+  position: relative;
 
   @media screen and (max-height: 500px) {
     position: relative;
     bottom: 20px;
   }
+}
+
+.messageBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: -1;
+  object-fit: fill;
 }
