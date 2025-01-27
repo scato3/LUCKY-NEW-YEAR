@@ -1,5 +1,10 @@
-import MakeTteokguk from '@/components/pages/make-tteokguk/make-tteokguk';
+import { Suspense } from 'react';
+import MainContainer from '@/components/pages/main/main-container';
 
-export default function MyTteokguk() {
-  return <MakeTteokguk />;
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <MainContainer type="make" />
+    </Suspense>
+  );
 }

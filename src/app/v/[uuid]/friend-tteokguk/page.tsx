@@ -1,9 +1,10 @@
 import MainContainer from '@/components/pages/main/main-container';
 
-type Props = {
-  params: { uuid: string };
-};
+interface PageProps {
+  params: Promise<{ uuid: string }>;
+}
 
-export default function Page(props: Props) {
-  return <MainContainer type="friend-make" uuid={props.params.uuid} />;
+export default async function Page({ params }: PageProps) {
+  const { uuid } = await params;
+  return <MainContainer type="friend-make" uuid={uuid} />;
 }
