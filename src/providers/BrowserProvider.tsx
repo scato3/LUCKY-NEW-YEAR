@@ -13,11 +13,14 @@ export default function BrowserProvider({
 
     if (isKakaoTalk || isLine) {
       const currentUrl = window.location.href;
-      if (isKakaoTalk) {
-        location.href = `kakaotalk://web/openExternal?url=${encodeURIComponent(currentUrl)}`;
-      } else {
-        location.href = `line://app/openExternalBrowser?url=${encodeURIComponent(currentUrl)}`;
-      }
+      // 현재 페이지를 외부 브라우저로 대체
+      window.location.replace(
+        isKakaoTalk
+          ? `kakaotalk://web/openExternal?url=${encodeURIComponent(currentUrl)}`
+          : `line://app/openExternalBrowser?url=${encodeURIComponent(currentUrl)}`
+      );
+      // 인앱브라우저에서 페이지 렌더링 방지
+      document.body.innerHTML = '';
       return;
     }
   }, []);
