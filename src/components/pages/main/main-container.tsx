@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styles from './main.module.scss';
 import Image from 'next/image';
 import { IconLongCloud, IconSun, IconEdge } from '../../../../public/icons';
@@ -15,32 +15,6 @@ interface MainContainerProps {
 export default function MainContainer({ type, uuid }: MainContainerProps) {
   const router = useRouter();
   const [name, setName] = useState('');
-  const [keyboardHeight, setKeyboardHeight] = useState(0);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const visualViewport = window.visualViewport;
-      if (!visualViewport) return;
-
-      const height = visualViewport.height;
-      const keyboardHeight = window.innerHeight - height;
-
-      if (keyboardHeight > 0) {
-        document.body.classList.add('keyboard-open');
-        document.documentElement.style.setProperty(
-          '--keyboard-height',
-          `${keyboardHeight}px`
-        );
-      } else {
-        document.body.classList.remove('keyboard-open');
-        document.documentElement.style.removeProperty('--keyboard-height');
-      }
-    };
-
-    window.visualViewport?.addEventListener('resize', handleResize);
-    return () =>
-      window.visualViewport?.removeEventListener('resize', handleResize);
-  }, []);
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
