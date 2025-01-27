@@ -8,26 +8,53 @@ import {
   GARNISH_ITEM_IMAGES,
 } from '@/constants/item-images';
 import useTteokgukImage from '@/hooks/useTteokgukImage';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { OptimizedImage } from '@/components/common/OptimizedImage';
 import { IconYungi } from '../../../../public/icons';
+import { useRecipeStore } from '@/store/recipe';
 
 export default function FinishedTteokguk() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const uuid = searchParams.get('uuid');
+  const { yuksu, main, sub, garnish } = useRecipeStore();
 
-  // 목데이터 - ingredients.ts에서 정의된 아이템들 중에서 선택
-  const selectedYuksu = 'sagol'; // 사골육수
-  const selectedMain = ['garae', 'kimchi']; // 가래떡, 김치만두
-  const selectedSub = ['sogogi', 'gul']; // 소고기, 굴
-  const selectedGarnish = ['gyeran', 'pa', 'gim']; // 계란, 파, 김
+  const tteokgukImage = useTteokgukImage(yuksu[0]);
 
-  const tteokgukImage = useTteokgukImage(selectedYuksu);
+  const handleShare = async () => {
+    const shareUrl = `${window.location.origin}/v/${uuid}`;
+    const isMobile = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      try {
+        await navigator.share({
+          title: '떡국 우정테스트',
+          text: '나만의 떡국을 만들어서 친구와 우정을 확인해보세요!',
+          url: shareUrl,
+        });
+      } catch (error) {
+        console.error('공유에 실패했습니다', error);
+      }
+    } else {
+      const textarea = document.createElement('textarea');
+      textarea.value = shareUrl;
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        alert('링크가 복사되었습니다');
+      } catch (error) {
+        console.error('링크 복사에 실패했습니다', error);
+      }
+      document.body.removeChild(textarea);
+    }
+  };
 
   const renderSelectedItems = () => {
     return (
       <>
         <div className={styles.selectedSubItems}>
-          {selectedSub.map(
+          {sub.map(
             (id, index) =>
               SUB_ITEM_IMAGES[id] && (
                 <OptimizedImage
@@ -42,7 +69,7 @@ export default function FinishedTteokguk() {
           )}
         </div>
         <div className={styles.selectedMainItems}>
-          {selectedMain.map(
+          {main.map(
             (id, index) =>
               MAIN_ITEM_IMAGES[id] && (
                 <OptimizedImage
@@ -55,7 +82,7 @@ export default function FinishedTteokguk() {
           )}
         </div>
         <div className={styles.selectedGarnishItems}>
-          {selectedGarnish.map(
+          {garnish.map(
             (id, index) =>
               GARNISH_ITEM_IMAGES[id] && (
                 <OptimizedImage
@@ -124,10 +151,7 @@ export default function FinishedTteokguk() {
         >
           랭킹 보기
         </button>
-        <button
-          className={styles.testButton}
-          onClick={() => router.push('./my-tteokguk-make')}
-        >
+        <button className={styles.testButton} onClick={handleShare}>
           테스트 보내기
         </button>
       </div>

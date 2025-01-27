@@ -4,9 +4,17 @@ import styles from './boiling-tteokguk.module.scss';
 import { SotBottom, SotTop, RightCloud } from '../../../../public/sot';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useRecipeStore } from '@/store/recipe';
 
-export default function BoilingTteokguk() {
+interface Props {
+  uuid: string;
+}
+
+export default function BoilingTteokguk({ uuid }: Props) {
   const [message, setMessage] = useState('');
+  const { yuksu, main, sub, garnish } = useRecipeStore();
+
+  console.log(yuksu, main, sub, garnish);
 
   const handleSend = () => {
     // if (message.trim()) {

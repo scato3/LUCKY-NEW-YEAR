@@ -12,11 +12,12 @@
   "dependencies": {
     "@tanstack/react-query": "^5.64.2",
     "@tanstack/react-query-devtools": "^5.64.2",
-    "hsc-fetch": "^1.0.0",
+    "hsc-fetch": "^1.0.1",
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sass": "^1.83.4"
+    "sass": "^1.83.4",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

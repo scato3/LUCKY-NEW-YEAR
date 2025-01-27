@@ -1,5 +1,5 @@
-import MakeTteokguk from '@/components/pages/make-tteokguk/make-tteokguk';
+import MainContainer from '@/components/pages/main/main-container';
 
-export default function MyTteokguk() {
-  return <MakeTteokguk />;
+export default function MyTteokgukMake() {
+  return <MainContainer type="make" />;
 }
