@@ -10,25 +10,25 @@ import {
 import useTteokgukImage from '@/hooks/useTteokgukImage';
 import { OptimizedImage } from '@/components/common/OptimizedImage';
 import { useGetDetailRanking } from '@/api/query/recipe';
+import { useSearchParams } from 'next/navigation';
 
-interface Props {
+interface DetailClientProps {
   ownerUUID: string;
-  findUUID: string;
 }
 
-export default function DetailClient({ ownerUUID, findUUID }: Props) {
+export default function DetailClient({ ownerUUID }: DetailClientProps) {
+  const searchParams = useSearchParams();
+  const findUUID = searchParams.get('uuid');
   const { data, isLoading } = useGetDetailRanking({
     ownerUUID,
-    findUUID,
+    findUUID: findUUID || '',
   });
 
   const tteokgukImage = useTteokgukImage(
     (data?.yuksu?.[0] || '').toLowerCase()
   );
 
-  console.log(data);
-
-  if (isLoading || !data) return null;
+  if (!findUUID || isLoading || !data) return null;
 
   const renderSelectedItems = () => {
     return (
