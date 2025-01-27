@@ -22,8 +22,6 @@ export default function RankingContainer({ uuid }: { uuid: string }) {
     setCurrentPage(page);
   };
 
-  console.log(data);
-
   return (
     <div className={styles.container}>
       <OptimizedImage

@@ -23,8 +23,6 @@ export default function FinishedTteokguk() {
   const { yuksu, main, sub, garnish } = useRecipeStore();
   const { result } = useResultStore();
 
-  console.log(result);
-
   const tteokgukImage = useTteokgukImage(yuksu[0]);
 
   const renderSelectedItems = () => {

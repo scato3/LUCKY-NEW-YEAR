@@ -22,9 +22,6 @@ export default function BoilingTteokguk({ uuid }: Props) {
   const { setResult } = useResultStore();
   const router = useRouter();
 
-  console.log(yuksu, main, sub, garnish);
-  console.log(uuid);
-
   const handleSend = () => {
     if (!uuid) return;
 
