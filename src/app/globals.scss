@@ -31,6 +31,11 @@ body {
   overscroll-behavior: none;
   position: fixed;
   width: 100%;
+
+  &.keyboard-open {
+    height: calc(100dvh - var(--keyboard-height, 0px));
+    overflow: hidden;
+  }
 }
 
 html {
