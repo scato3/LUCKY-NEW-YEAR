@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import styles from './finish.module.scss';
 import {
   IconLongCloud,
@@ -17,11 +18,21 @@ import { useRouter } from 'next/navigation';
 import { OptimizedImage } from '@/components/common/OptimizedImage';
 import { useRecipeStore } from '@/store/recipe';
 import { useResultStore } from '@/store/result';
+import Finishing from '@/components/pages/finish-tteokguk/finishing';
 
 export default function FinishedTteokguk() {
+  const [isFinishing, setIsFinishing] = useState(true);
   const router = useRouter();
   const { yuksu, main, sub, garnish } = useRecipeStore();
   const { result } = useResultStore();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsFinishing(false);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const tteokgukImage = useTteokgukImage(yuksu[0]);
 
@@ -72,6 +83,10 @@ export default function FinishedTteokguk() {
       </>
     );
   };
+
+  if (isFinishing) {
+    return <Finishing />;
+  }
 
   return (
     <div className={styles.container}>
