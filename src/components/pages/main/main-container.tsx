@@ -34,12 +34,6 @@ export default function MainContainer({ type, uuid }: MainContainerProps) {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSubmit();
-    }
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.innerContainer}>
@@ -62,57 +56,62 @@ export default function MainContainer({ type, uuid }: MainContainerProps) {
                 alt="모서리 장식"
                 className={styles.edgeImage}
               />
+              <div className={styles.titleTextContainer}>
+                <p className={`${styles.title} heir-font`}>떡국</p>
+                <p className={`${styles.subTitle} heir-font`}>우정테스트</p>
+                {type === 'main' ? (
+                  <div className={styles.listContainer}>
+                    <div className={styles.listItem}>
+                      <span className={styles.number}>1</span>
+                      나만의 떡국을 만들어서
+                    </div>
+                    <div className={styles.listItem}>
+                      <span className={styles.number}>2</span>친구에게 공유하고
+                    </div>
+                    <div className={styles.listItem}>
+                      <span className={styles.number}>3</span>궁합점수 랭킹을
+                      확인해요
+                    </div>
+                  </div>
+                ) : type === 'friend' ? (
+                  <div className={styles.listContainer}>
+                    <div className={styles.listItem}>
+                      <span className={styles.number}>1</span>
+                      친구의 떡국에 내 레시피를 더해서
+                    </div>
+                    <div className={styles.listItem}>
+                      <span className={styles.number}>2</span>
+                      둘만의 떡국을 완성하고
+                    </div>
+                    <div className={styles.listItem}>
+                      <span className={styles.number}>3</span>
+                      우정 궁합을 확인하세요!
+                    </div>
+                  </div>
+                ) : null}
+              </div>
             </div>
           )}
-          <div className={styles.titleTextContainer}>
-            <p className={`${styles.title} heir-font`}>떡국</p>
-            <p className={`${styles.subTitle} heir-font`}>우정테스트</p>
-            {type === 'main' ? (
-              <div className={styles.listContainer}>
-                <div className={styles.listItem}>
-                  <span className={styles.number}>1</span>
-                  나만의 떡국을 만들어서
-                </div>
-                <div className={styles.listItem}>
-                  <span className={styles.number}>2</span>친구에게 공유하고
-                </div>
-                <div className={styles.listItem}>
-                  <span className={styles.number}>3</span>궁합점수 랭킹을
-                  확인해요
-                </div>
-              </div>
-            ) : type === 'friend' ? (
-              <div className={styles.listContainer}>
-                <div className={styles.listItem}>
-                  <span className={styles.number}>1</span>
-                  친구의 떡국에 내 레시피를 더해서
-                </div>
-                <div className={styles.listItem}>
-                  <span className={styles.number}>2</span>
-                  둘만의 떡국을 완성하고
-                </div>
-                <div className={styles.listItem}>
-                  <span className={styles.number}>3</span>
-                  우정 궁합을 확인하세요!
-                </div>
-              </div>
-            ) : (
-              <>
-                <p className={`${styles.nameTitle} heir-font`}>
-                  {type === 'make' ? '내 이름은?' : '친구에게 보일 내 이름'}
-                </p>
-                <input
-                  type="text"
-                  className={styles.nameInput}
-                  placeholder="홍길동"
-                  value={name}
-                  onChange={handleNameChange}
-                  maxLength={6}
-                  onKeyPress={handleKeyPress}
-                />
-              </>
-            )}
-          </div>
+          {(type === 'make' || type === 'friend-make') && (
+            <div className={styles.titleTextContainer}>
+              <p className={`${styles.nameTitle} heir-font`}>
+                {type === 'make' ? '내 이름은?' : '친구에게 보일 내 이름'}
+              </p>
+              <input
+                type="text"
+                className={styles.nameInput}
+                placeholder="홍길동"
+                value={name}
+                onChange={handleNameChange}
+                maxLength={6}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleSubmit();
+                  }
+                }}
+              />
+            </div>
+          )}
         </div>
 
         {(type === 'main' || type === 'friend') && (
@@ -120,8 +119,8 @@ export default function MainContainer({ type, uuid }: MainContainerProps) {
             src={FullTteokguk}
             alt="떡국 이미지"
             className={styles.tteokgukImage}
-            width={160}
-            height={150}
+            width={200}
+            height={160}
             quality={100}
             priority
           />

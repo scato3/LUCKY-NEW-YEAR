@@ -13,7 +13,7 @@ import {
   SUB_ITEM_IMAGES,
   GARNISH_ITEM_IMAGES,
 } from '@/constants/item-images';
-import { IconLeftEdge, IconRightEdge } from '../../../../public/icons';
+import { IconBottomEdge } from '../../../../public/icons';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { OptimizedImage } from '@/components/common/OptimizedImage';
 import { useRecipe } from '@/hooks/useRecipe';
@@ -158,14 +158,9 @@ export default function MakeTteokguk({ uuid }: MakeTteokgukProps) {
         완성
       </button>
       <OptimizedImage
-        src={IconLeftEdge}
-        alt="왼쪽 장식"
-        className={styles.leftEdge}
-      />
-      <OptimizedImage
-        src={IconRightEdge}
-        alt="오른쪽 장식"
-        className={styles.rightEdge}
+        src={IconBottomEdge}
+        alt="아래 장식"
+        className={styles.bottomEdge}
       />
       <OptimizedImage
         src={IconLongCloud}
