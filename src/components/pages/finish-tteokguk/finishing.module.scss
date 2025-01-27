@@ -1,0 +1,119 @@
+.container {
+  width: 100%;
+  height: 100dvh;
+  position: relative;
+  overflow: hidden;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.topBackground {
+  position: absolute;
+  top: 70%;
+  left: -100%;
+  width: 300%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: rgba(141, 109, 71, 0.69);
+}
+
+.bottomBackground {
+  position: absolute;
+  top: 75%;
+  left: -100%;
+  width: 300%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: #766551;
+}
+
+.sun {
+  position: absolute;
+  top: 45px;
+  width: 121px;
+  height: 121px;
+  right: 30px;
+  z-index: 5;
+}
+
+.bigCloud {
+  position: absolute;
+  top: 45px;
+  width: 250px;
+  height: 74px;
+  right: -30px;
+}
+
+.verySmallCloud {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  width: 159px;
+  height: 39px;
+}
+
+.smallCloud {
+  position: absolute;
+  top: 130px;
+  right: -120px;
+  width: 250px;
+  height: 74px;
+  transform: scaleX(-1);
+  z-index: 6;
+}
+
+.middleCloud {
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  width: 200px;
+  height: 50px;
+  transform: scaleX(-1);
+}
+
+.bottomCloud {
+  position: absolute;
+  top: 55%;
+  width: 203px;
+  height: 50px;
+  right: -30px;
+  transform: scaleX(-1);
+}
+
+@keyframes fly {
+  0% {
+    transform: translate(-120%, -50%);
+  }
+  20% {
+    transform: translate(-72%, -80%);
+  }
+  40% {
+    transform: translate(-24%, -40%);
+  }
+  60% {
+    transform: translate(24%, -80%);
+  }
+  80% {
+    transform: translate(72%, -40%);
+  }
+  100% {
+    transform: translate(120%, -50%);
+  }
+}
+
+.ggachi {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: fly 4s linear infinite;
+  will-change: transform;
+}
+
+.textContainer {
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
