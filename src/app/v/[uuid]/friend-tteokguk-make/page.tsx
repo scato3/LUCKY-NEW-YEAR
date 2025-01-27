@@ -1,5 +1,9 @@
 import MakeTteokguk from '@/components/pages/make-tteokguk/make-tteokguk';
 
-export default async function Page({ params }: { params: { uuid: string } }) {
-  return <MakeTteokguk uuid={params.uuid} />;
+type Props = {
+  params: { uuid: string };
+};
+
+export default function Page(props: Props) {
+  return <MakeTteokguk uuid={props.params.uuid} />;
 }
