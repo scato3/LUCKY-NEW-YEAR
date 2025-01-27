@@ -80,7 +80,7 @@ export const MAIN = [
   },
   {
     id: 'gguldduk',
-    name: '귤떡',
+    name: '꿀떡',
     image: MainGguldduk,
   },
   {

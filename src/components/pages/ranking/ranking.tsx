@@ -3,9 +3,23 @@
 import styles from './ranking.module.scss';
 import { OptimizedImage } from '@/components/common/OptimizedImage';
 import { IconLongCloud, IconSun, IconFlag } from '../../../../public/icons';
+import { useGetRanking } from '@/api/query/recipe';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
-export default function RankingContainer() {
-  const hasRankingData = true;
+export default function RankingContainer({ uuid }: { uuid: string }) {
+  const router = useRouter();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data } = useGetRanking({
+    userUUID: uuid,
+    page: currentPage,
+    size: 6,
+  });
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className={styles.container}>
@@ -24,10 +38,10 @@ export default function RankingContainer() {
         alt="구름 아이콘"
         className={styles.cloudSecondIcon}
       />
-      {hasRankingData ? (
+      {data ? (
         <>
           <div className={styles.titleContainer}>
-            <p className={styles.title}>별명을 놓쳐서</p>
+            <p className={styles.title}>별명을 눌러서</p>
             <p className={styles.title}>
               친구들이 보낸 떡국과 신년 인사를 확인해보세요
             </p>
@@ -42,14 +56,35 @@ export default function RankingContainer() {
               <div className={styles.rankingTitle}>
                 <p>{'< 랭킹 보드 >'}</p>
               </div>
-              {Array.from({ length: 6 }).map((_, index) => (
-                <div key={index} className={styles.rankingItem}>
-                  <span className={styles.name}>강아지</span>
-                  <span className={styles.score}>120점</span>
+              {data.rankList?.map((item, index) => (
+                <div
+                  key={index}
+                  className={styles.rankingItem}
+                  onClick={() => {
+                    router.push(
+                      `/v/${uuid}/ranking/detail?uuid=${item.userUUID}`
+                    );
+                  }}
+                >
+                  <span className={styles.name}>{item.nickname}</span>
+                  <span className={styles.score}>{item.score}점</span>
                 </div>
               ))}
             </div>
           </div>
+          {data && (
+            <div className={styles.paginationContainer}>
+              {Array.from({ length: data.totalPages }).map((_, index) => (
+                <div
+                  key={index}
+                  className={`${styles.pageIndicator} ${
+                    currentPage === index + 1 ? styles.active : ''
+                  }`}
+                  onClick={() => handlePageChange(index + 1)}
+                />
+              ))}
+            </div>
+          )}
         </>
       ) : (
         <div className={styles.emptyContainer}>
