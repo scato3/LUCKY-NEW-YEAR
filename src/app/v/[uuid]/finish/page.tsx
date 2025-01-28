@@ -39,7 +39,7 @@ export default function FinishedTteokguk() {
     }
   }, []);
 
-  const tteokgukImage = useTteokgukImage(result?.yuksu[0]);
+  const tteokgukImage = useTteokgukImage(result?.yuksu[0]?.toLowerCase());
 
   const renderSelectedItems = () => {
     if (!result) return null;
