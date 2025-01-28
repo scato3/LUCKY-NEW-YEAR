@@ -19,6 +19,11 @@ export default function BrowserProvider({
     const isThread = /Threads/i.test(navigator.userAgent);
     const isNaver = /NAVER/i.test(navigator.userAgent);
     const isBand = /BAND/i.test(navigator.userAgent);
+    const isEverytime = /everytime/i.test(navigator.userAgent);
+    const isWeverse = /weverse/i.test(navigator.userAgent);
+    const isTwitter = /Twitter/i.test(navigator.userAgent);
+    const isPinterest = /Pinterest/i.test(navigator.userAgent);
+    const isWeibo = /Weibo/i.test(navigator.userAgent);
 
     const isInAppBrowser =
       isKakaoTalk ||
@@ -27,7 +32,12 @@ export default function BrowserProvider({
       isFacebook ||
       isThread ||
       isNaver ||
-      isBand;
+      isBand ||
+      isEverytime ||
+      isWeverse ||
+      isTwitter ||
+      isPinterest ||
+      isWeibo;
 
     if (isMobile && isInAppBrowser) {
       const currentUrl = window.location.href;
