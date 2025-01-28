@@ -201,7 +201,7 @@
     top: 100%;
     left: 24px;
     width: 1px;
-    height: 150px;
+    height: calc(55dvh - 250px);
     background-color: #ffffff;
   }
 }

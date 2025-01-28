@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   title: '떡국 우정테스트',
   description: '나와 친구의 떡국을 조합해서 우정 점수를 확인해보세요',
   openGraph: {
-    title: '떡국 우정테스트',
-    description: '나와 친구의 떡국을 조합해서 우정 점수를 확인해보세요',
+    title: '올해 나와 가장 잘 맞을 친구는?',
+    description: '친구와 함께 떡국을 조합해서 둘의 우정 궁합을 확인해보세요',
     images: [
       {
         url: '/tteokguk/thumbnail.png',

@@ -63,14 +63,15 @@ export default function MainContainer({ type, uuid }: MainContainerProps) {
                   <div className={styles.listContainer}>
                     <div className={styles.listItem}>
                       <span className={styles.number}>1</span>
-                      나만의 떡국을 만들어서
+                      나만의 떡국을 만들고
                     </div>
                     <div className={styles.listItem}>
-                      <span className={styles.number}>2</span>친구에게 공유하고
+                      <span className={styles.number}>2</span>친구들의 떡국과
+                      조합해서
                     </div>
                     <div className={styles.listItem}>
-                      <span className={styles.number}>3</span>궁합점수 랭킹을
-                      확인해요
+                      <span className={styles.number}>3</span>가장 궁합이 잘
+                      맞는 친구를 찾아보세요
                     </div>
                   </div>
                 ) : type === 'friend' ? (
