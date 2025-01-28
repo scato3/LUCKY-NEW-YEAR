@@ -6,7 +6,7 @@ interface ShareOptions {
 
 export const shareLink = async ({
   title = '떡국 우정테스트',
-  text = `올해 우리의 우정 전선은 어떨까요?\n떡국 우정 테스트에서 다양한 재료로 떡국을 만들고, 친구가 만든 떡국과 조합해서, 둘의 우정 궁합을 확인해보세요\n그리고 직접 떡국 테스트를 만들어 친구들에게 공유해보세요!`,
+  text = `올해 우리의 우정 전선은 어떨까요?\n떡국 우정 테스트에서 다양한 재료로 떡국을 만들고, 친구가 만든 떡국과 조합해서, 둘의 우정 궁합을 확인해보세요!`,
   url,
 }: ShareOptions) => {
   const isMobile = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent);
