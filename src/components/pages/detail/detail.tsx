@@ -11,7 +11,7 @@ import useTteokgukImage from '@/hooks/useTteokgukImage';
 import { OptimizedImage } from '@/components/common/OptimizedImage';
 import { useGetDetailRanking } from '@/api/query/recipe';
 import { useSearchParams } from 'next/navigation';
-import ResultBox from '../../../../public/icons/result_box.svg';
+import { IconResultBox } from '../../../../public/icons';
 
 interface DetailClientProps {
   ownerUUID: string;
@@ -124,7 +124,7 @@ export default function DetailClient({ ownerUUID }: DetailClientProps) {
         <div className={styles.messageInput}>
           {data?.message}
           <OptimizedImage
-            src={ResultBox}
+            src={IconResultBox}
             alt="메시지 배경"
             fill
             priority
