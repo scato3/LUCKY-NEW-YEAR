@@ -3,7 +3,6 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   TestData,
   PutData,
-  PutRecipeResponse,
   RecipeResponse,
   RankingParameterProps,
   RankingResponse,
@@ -29,8 +28,8 @@ export const usePostRecipeTest = () => {
 async function putRecipeTest(
   data: PutData,
   ownerUUID: string
-): Promise<PutRecipeResponse> {
-  return await api.put<PutRecipeResponse>({
+): Promise<GetRankingResponse> {
+  return await api.put<GetRankingResponse>({
     url: `recipe/test/${ownerUUID}`,
     body: data,
   });
@@ -38,7 +37,7 @@ async function putRecipeTest(
 
 export const usePutRecipeTest = () => {
   return useMutation<
-    PutRecipeResponse,
+    GetRankingResponse,
     Error,
     { data: PutData; ownerUUID: string }
   >({
