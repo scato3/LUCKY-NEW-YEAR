@@ -15,8 +15,8 @@ export default function BrowserProvider({
     const isKakaoTalk = /KAKAOTALK/i.test(navigator.userAgent);
     const isLine = /Line/i.test(navigator.userAgent);
     const isInstagram = /Instagram/i.test(navigator.userAgent);
-    const isFacebook = /FBAN|FBAV/i.test(navigator.userAgent);
-    const isThread = /Threads/i.test(navigator.userAgent);
+    const isFacebook = /FBAN|FBAV|FB_IAB|FBIOS/i.test(navigator.userAgent);
+    const isThread = /Threads|Instagram|FBAN|FBAV/i.test(navigator.userAgent);
     const isNaver = /NAVER/i.test(navigator.userAgent);
     const isBand = /BAND/i.test(navigator.userAgent);
     const isEverytime = /everytime/i.test(navigator.userAgent);
