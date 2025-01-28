@@ -67,7 +67,7 @@ export default function RankingContainer({ uuid }: { uuid: string }) {
                     );
                   }}
                 >
-                  {index < 3 && (
+                  {currentPage === 1 && index < 3 && (
                     <div
                       className={`${styles.medal} ${styles[`medal${index + 1}`]}`}
                     >
