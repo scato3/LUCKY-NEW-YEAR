@@ -9,7 +9,7 @@ export default async function DetailPage({ params }: PageProps) {
   const { uuid } = await params;
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense>
       <DetailClient ownerUUID={uuid} />
     </Suspense>
   );

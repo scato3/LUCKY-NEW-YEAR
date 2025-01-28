@@ -3,7 +3,7 @@ import FinishedTteokguk from '@/components/pages/finish-tteokguk/tteokguk-finish
 
 export default function Page() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense>
       <FinishedTteokguk />
     </Suspense>
   );

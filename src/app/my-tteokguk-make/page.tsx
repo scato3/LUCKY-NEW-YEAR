@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 
 export default function MyTteokguk() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense>
       <MakeTteokguk />
     </Suspense>
   );
