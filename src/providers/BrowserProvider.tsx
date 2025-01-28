@@ -8,17 +8,40 @@ export default function BrowserProvider({
   children: React.ReactNode;
 }) {
   useEffect(() => {
+    // 일반적인 모바일 브라우저 User Agent 문자열
+    const isMobile = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent);
+
+    // 주요 인앱 브라우저 감지
     const isKakaoTalk = /KAKAOTALK/i.test(navigator.userAgent);
     const isLine = /Line/i.test(navigator.userAgent);
+    const isInstagram = /Instagram/i.test(navigator.userAgent);
+    const isFacebook = /FBAN|FBAV/i.test(navigator.userAgent);
+    const isThread = /Threads/i.test(navigator.userAgent);
+    const isNaver = /NAVER/i.test(navigator.userAgent);
+    const isBand = /BAND/i.test(navigator.userAgent);
 
-    if (isKakaoTalk || isLine) {
+    const isInAppBrowser =
+      isKakaoTalk ||
+      isLine ||
+      isInstagram ||
+      isFacebook ||
+      isThread ||
+      isNaver ||
+      isBand;
+
+    if (isMobile && isInAppBrowser) {
       const currentUrl = window.location.href;
-      // 현재 페이지를 외부 브라우저로 대체
-      window.location.replace(
-        isKakaoTalk
-          ? `kakaotalk://web/openExternal?url=${encodeURIComponent(currentUrl)}`
-          : `line://app/openExternalBrowser?url=${encodeURIComponent(currentUrl)}`
-      );
+
+      // 각 앱별 외부 브라우저 열기 처리
+      if (isKakaoTalk) {
+        window.location.href = `kakaotalk://web/openExternal?url=${encodeURIComponent(currentUrl)}`;
+      } else if (isLine) {
+        window.location.href = `line://app/openExternalBrowser?url=${encodeURIComponent(currentUrl)}`;
+      } else if (isInstagram || isFacebook || isThread || isNaver || isBand) {
+        // 다른 앱들은 일반 브라우저로 리다이렉트
+        window.location.href = currentUrl;
+      }
+
       // 인앱브라우저에서 페이지 렌더링 방지
       document.body.innerHTML = '';
       return;
