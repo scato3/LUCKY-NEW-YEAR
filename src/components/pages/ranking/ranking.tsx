@@ -67,6 +67,13 @@ export default function RankingContainer({ uuid }: { uuid: string }) {
                     );
                   }}
                 >
+                  {index < 3 && (
+                    <div
+                      className={`${styles.medal} ${styles[`medal${index + 1}`]}`}
+                    >
+                      {index + 1}
+                    </div>
+                  )}
                   <span className={styles.name}>{item.nickname}</span>
                   <span className={styles.score}>{item.score}점</span>
                 </div>

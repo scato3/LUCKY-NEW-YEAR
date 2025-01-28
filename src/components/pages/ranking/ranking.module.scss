@@ -82,8 +82,9 @@
 }
 
 .rankingItem {
-  display: grid;
-  grid-template-columns: 1fr 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 5px 40px;
   position: relative;
   cursor: pointer;
@@ -100,11 +101,15 @@
   }
 
   .name {
+    display: flex;
+    align-items: center;
     text-align: left;
+    flex: 1;
   }
 
   .score {
     text-align: right;
+    margin-left: 20px;
   }
 
   .name,
@@ -114,6 +119,30 @@
     line-height: 30px;
     color: #000000;
   }
+}
+
+.medal {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  margin-right: 8px;
+  color: white;
+}
+
+.medal1 {
+  background-color: #ffd700; // 금메달
+}
+
+.medal2 {
+  background-color: #c0c0c0; // 은메달
+}
+
+.medal3 {
+  background-color: #cd7f32; // 동메달
 }
 
 .rankingTitle {
