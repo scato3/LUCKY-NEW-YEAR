@@ -39,6 +39,7 @@ export default function BoilingTteokguk({ uuid }: Props) {
       },
       {
         onSuccess: (response) => {
+          sessionStorage.removeItem('hasSeenFinishing');
           setResult(response);
           router.push(`/v/${uuid}/finish`);
         },

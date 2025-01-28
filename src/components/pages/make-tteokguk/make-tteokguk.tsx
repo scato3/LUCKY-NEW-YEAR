@@ -133,6 +133,7 @@ export default function MakeTteokguk({ uuid }: MakeTteokgukProps) {
     };
 
     setRecipe(recipe);
+
     mutate(recipe, {
       onSuccess: (response) => {
         if (uuid) {

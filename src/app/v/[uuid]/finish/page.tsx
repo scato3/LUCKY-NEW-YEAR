@@ -21,18 +21,26 @@ import { useResultStore } from '@/store/result';
 import Finishing from '@/components/pages/finish-tteokguk/finishing';
 
 export default function FinishedTteokguk() {
-  const [isFinishing, setIsFinishing] = useState(true);
+  const [isFinishing, setIsFinishing] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return !sessionStorage.getItem('hasSeenFinishing');
+    }
+    return true;
+  });
   const router = useRouter();
   const { yuksu, main, sub, garnish } = useRecipeStore();
   const { result } = useResultStore();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsFinishing(false);
-    }, 4000);
+    if (isFinishing) {
+      sessionStorage.setItem('hasSeenFinishing', 'true');
+      const timer = setTimeout(() => {
+        setIsFinishing(false);
+      }, 4000);
 
-    return () => clearTimeout(timer);
-  }, []);
+      return () => clearTimeout(timer);
+    }
+  }, [isFinishing]);
 
   const tteokgukImage = useTteokgukImage(yuksu[0]);
 
