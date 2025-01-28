@@ -28,9 +28,9 @@ export default function FinishedTteokguk() {
     const hasSeenFinishing = sessionStorage.getItem('hasSeenFinishing');
 
     if (!hasSeenFinishing) {
-      sessionStorage.setItem('hasSeenFinishing', 'true');
       const timer = setTimeout(() => {
         setIsFinishing(false);
+        sessionStorage.setItem('hasSeenFinishing', 'true');
       }, 4000);
 
       return () => clearTimeout(timer);
