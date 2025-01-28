@@ -64,6 +64,8 @@ export interface GetRankingResponse {
   sub: string[];
   garnish: string[];
   nickname: string;
+  myScore: number;
+  ownerUUID: string;
 }
 
 export interface GetExistParameterProps {

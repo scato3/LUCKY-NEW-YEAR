@@ -16,77 +16,82 @@ import {
 import useTteokgukImage from '@/hooks/useTteokgukImage';
 import { useRouter } from 'next/navigation';
 import { OptimizedImage } from '@/components/common/OptimizedImage';
-import { useRecipeStore } from '@/store/recipe';
 import { useResultStore } from '@/store/result';
 import Finishing from '@/components/pages/finish-tteokguk/finishing';
 
 export default function FinishedTteokguk() {
-  const [isFinishing, setIsFinishing] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return !sessionStorage.getItem('hasSeenFinishing');
-    }
-    return true;
-  });
+  const [isFinishing, setIsFinishing] = useState(true);
   const router = useRouter();
-  const { yuksu, main, sub, garnish } = useRecipeStore();
   const { result } = useResultStore();
 
   useEffect(() => {
-    if (isFinishing) {
+    const hasSeenFinishing = sessionStorage.getItem('hasSeenFinishing');
+
+    if (!hasSeenFinishing) {
       sessionStorage.setItem('hasSeenFinishing', 'true');
       const timer = setTimeout(() => {
         setIsFinishing(false);
       }, 4000);
 
       return () => clearTimeout(timer);
+    } else {
+      setIsFinishing(false);
     }
-  }, [isFinishing]);
+  }, []);
 
-  const tteokgukImage = useTteokgukImage(yuksu[0]);
+  const tteokgukImage = useTteokgukImage(result?.yuksu[0]);
 
   const renderSelectedItems = () => {
+    if (!result) return null;
+
     return (
       <>
         <div className={styles.selectedSubItems}>
-          {sub.map(
-            (id, index) =>
-              SUB_ITEM_IMAGES[id] && (
+          {result.sub?.map((id, index) => {
+            const lowerId = id.toLowerCase();
+            return (
+              SUB_ITEM_IMAGES[lowerId] && (
                 <OptimizedImage
-                  key={`${id}-${index}`}
-                  src={SUB_ITEM_IMAGES[id]}
-                  alt={id}
+                  key={`${lowerId}-${index}`}
+                  src={SUB_ITEM_IMAGES[lowerId]}
+                  alt={lowerId}
                   className={`${styles.selectedSubItem} ${
-                    id === 'gul' ? styles.gulPosition : ''
-                  } ${id === 'huru' ? styles.huruPosition : ''}`}
+                    lowerId === 'gul' ? styles.gulPosition : ''
+                  } ${lowerId === 'huru' ? styles.huruPosition : ''}`}
                 />
               )
-          )}
+            );
+          })}
         </div>
         <div className={styles.selectedMainItems}>
-          {main.map(
-            (id, index) =>
-              MAIN_ITEM_IMAGES[id] && (
+          {result.main?.map((id, index) => {
+            const lowerId = id.toLowerCase();
+            return (
+              MAIN_ITEM_IMAGES[lowerId] && (
                 <OptimizedImage
-                  key={`${id}-${index}`}
-                  src={MAIN_ITEM_IMAGES[id]}
-                  alt={id}
+                  key={`${lowerId}-${index}`}
+                  src={MAIN_ITEM_IMAGES[lowerId]}
+                  alt={lowerId}
                   className={styles.selectedMainItem}
                 />
               )
-          )}
+            );
+          })}
         </div>
         <div className={styles.selectedGarnishItems}>
-          {garnish.map(
-            (id, index) =>
-              GARNISH_ITEM_IMAGES[id] && (
+          {result.garnish?.map((id, index) => {
+            const lowerId = id.toLowerCase();
+            return (
+              GARNISH_ITEM_IMAGES[lowerId] && (
                 <OptimizedImage
-                  key={`${id}-${index}`}
-                  src={GARNISH_ITEM_IMAGES[id]}
-                  alt={id}
+                  key={`${lowerId}-${index}`}
+                  src={GARNISH_ITEM_IMAGES[lowerId]}
+                  alt={lowerId}
                   className={styles.selectedGarnishItem}
                 />
               )
-          )}
+            );
+          })}
         </div>
       </>
     );

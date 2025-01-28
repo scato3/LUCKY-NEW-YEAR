@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { PutRecipeResponse } from '@/api/types/recipe';
+import { GetRankingResponse } from '@/api/types/recipe';
 
 interface ResultStore {
-  result: PutRecipeResponse | null;
-  setResult: (result: PutRecipeResponse) => void;
+  result: GetRankingResponse | null;
+  setResult: (result: GetRankingResponse) => void;
 }
 
 export const useResultStore = create<ResultStore>()(
