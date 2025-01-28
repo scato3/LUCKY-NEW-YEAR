@@ -47,9 +47,24 @@ export default function BrowserProvider({
         window.location.href = `kakaotalk://web/openExternal?url=${encodeURIComponent(currentUrl)}`;
       } else if (isLine) {
         window.location.href = `line://app/openExternalBrowser?url=${encodeURIComponent(currentUrl)}`;
-      } else if (isInstagram || isFacebook || isThread || isNaver || isBand) {
+      } else if (
+        isInstagram ||
+        isFacebook ||
+        isThread ||
+        isNaver ||
+        isBand ||
+        isEverytime ||
+        isWeverse ||
+        isTwitter ||
+        isPinterest ||
+        isWeibo
+      ) {
         // 다른 앱들은 일반 브라우저로 리다이렉트
         window.location.href = currentUrl;
+        // 백업 방법으로 window.open 시도
+        window.open(currentUrl, '_system');
+        // 또는 target="_blank"로 시도
+        window.open(currentUrl, '_blank');
       }
 
       // 인앱브라우저에서 페이지 렌더링 방지
