@@ -3,7 +3,7 @@
 import styles from './boiling-tteokguk.module.scss';
 import { SotBottom, SotTop, RightCloud } from '../../../../public/sot';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRecipeStore } from '@/store/recipe';
 import { usePutRecipeTest } from '@/api/query/recipe';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -21,7 +21,6 @@ export default function BoilingTteokguk({ uuid }: Props) {
   const { mutate } = usePutRecipeTest();
   const { setResult } = useResultStore();
   const router = useRouter();
-  const [keyboardHeight, setKeyboardHeight] = useState(0);
 
   const handleSend = () => {
     if (!uuid) return;
@@ -47,19 +46,6 @@ export default function BoilingTteokguk({ uuid }: Props) {
       }
     );
   };
-
-  useEffect(() => {
-    const handleResize = () => {
-      const height = window.innerHeight;
-      const newKeyboardHeight = height < 600 ? 300 : 0; // 키보드 높이에 따라 조정
-      setKeyboardHeight(newKeyboardHeight);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   return (
     <div className={styles.container}>
@@ -98,10 +84,7 @@ export default function BoilingTteokguk({ uuid }: Props) {
         />
       </div>
       <div className={styles.tableBackground}></div>
-      <div
-        className={styles.inputWrapper}
-        style={{ bottom: `${60 + keyboardHeight}px` }}
-      >
+      <div className={styles.inputWrapper}>
         <textarea
           className={styles.messageInput}
           value={message}

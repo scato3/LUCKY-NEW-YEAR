@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.scss';
 import QueryProvider from './queryProvider';
+import BrowserProvider from '@/providers/BrowserProvider';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
@@ -36,12 +37,14 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <QueryProvider>
-          <GoogleAnalytics
-            gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}
-          />
-          {children}
-        </QueryProvider>
+        <BrowserProvider>
+          <QueryProvider>
+            <GoogleAnalytics
+              gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}
+            />
+            {children}
+          </QueryProvider>
+        </BrowserProvider>
       </body>
     </html>
   );
