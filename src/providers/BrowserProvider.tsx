@@ -49,7 +49,7 @@ export default function BrowserProvider({
             padding: 0 20px;
           ">
             원활한 사용을 위해<br/>
-            외부 브라우저로 접속해 주세요
+            크롬 브라우저로 접속해 주세요
           </p>
         </div>
       `;
