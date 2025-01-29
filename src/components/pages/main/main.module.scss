@@ -182,14 +182,11 @@
       padding-bottom: max(30px, env(safe-area-inset-bottom));
       bottom: env(safe-area-inset-bottom);
 
+      height: calc(100px + env(safe-area-inset-bottom));
       @media screen and (max-height: 500px) {
         position: absolute;
         bottom: 20px;
       }
-    }
-    @media screen and (max-height: 500px) {
-      padding-bottom: 30px; // 기본 패딩
-      bottom: 30px; // 기본 위치
     }
   }
 }
