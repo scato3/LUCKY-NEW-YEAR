@@ -83,7 +83,7 @@ export default function MainContainer({ type, uuid }: MainContainerProps) {
                   <div className={styles.listContainer}>
                     <div className={styles.listItem}>
                       <span className={styles.number}>1</span>
-                      {data?.ownerNickname}의 떡국에 내 레시피를 더해서
+                      {data?.ownerNickname}님의 떡국에 내 레시피를 더해서
                     </div>
                     <div className={styles.listItem}>
                       <span className={styles.number}>2</span>
