@@ -1,5 +1,5 @@
 import { api } from '../instance';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, UseQueryOptions } from '@tanstack/react-query';
 import {
   TestData,
   PutData,
@@ -51,15 +51,15 @@ async function getRanking(
   return await api.get<RankingResponse>({
     url: `recipe/test/${data.userUUID}/rank`,
     query: {
-      page: data.page,
-      size: data.size,
+      page: 1,
+      size: 50,
     },
   });
 }
 
 export const useGetRanking = (data: RankingParameterProps) => {
   return useQuery<RankingResponse, Error>({
-    queryKey: ['ranking', data.userUUID, data.page, data.size],
+    queryKey: ['ranking', data.userUUID],
     queryFn: () => getRanking(data),
   });
 };
@@ -90,9 +90,13 @@ export async function getExist(
   });
 }
 
-export const useGetExist = (data: GetExistParameterProps) => {
+export const useGetExist = (
+  data: GetExistParameterProps,
+  options?: UseQueryOptions<GetExistResponse, Error>
+) => {
   return useQuery<GetExistResponse, Error>({
-    queryKey: ['exist', data.ownerUUID],
+    queryKey: ['exists', data.ownerUUID],
     queryFn: () => getExist(data),
+    ...options,
   });
 };

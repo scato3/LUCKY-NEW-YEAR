@@ -31,8 +31,6 @@ export interface RecipeResponse {
 
 export interface RankingParameterProps {
   userUUID: string;
-  page: number;
-  size: number;
 }
 
 interface RankingItem {
@@ -74,4 +72,5 @@ export interface GetExistParameterProps {
 
 export interface GetExistResponse {
   exists: boolean;
+  ownerNickname: string;
 }

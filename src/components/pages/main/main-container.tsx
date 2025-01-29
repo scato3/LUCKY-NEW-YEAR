@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { IconLongCloud, IconSun, IconEdge } from '../../../../public/icons';
 import { FullTteokguk } from '../../../../public/tteokguk';
 import { useRouter } from 'next/navigation';
+import { useGetExist } from '@/api/query/recipe';
 
 interface MainContainerProps {
   type: 'main' | 'make' | 'friend' | 'friend-make';
@@ -15,7 +16,11 @@ interface MainContainerProps {
 export default function MainContainer({ type, uuid }: MainContainerProps) {
   const router = useRouter();
   const [name, setName] = useState('');
+  const { data } = useGetExist({
+    ownerUUID: uuid || '',
+  });
 
+  console.log(data);
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value.length <= 6) {
@@ -78,7 +83,7 @@ export default function MainContainer({ type, uuid }: MainContainerProps) {
                   <div className={styles.listContainer}>
                     <div className={styles.listItem}>
                       <span className={styles.number}>1</span>
-                      친구의 떡국에 내 레시피를 더해서
+                      {data?.ownerNickname}의 떡국에 내 레시피를 더해서
                     </div>
                     <div className={styles.listItem}>
                       <span className={styles.number}>2</span>
